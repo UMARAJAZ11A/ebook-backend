@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 dotenv.config();
 
-const PORT = 'https://ebookbackend.herokuapp.com/';
+const PORT = '80';
 
 app.use(express.json());
 
