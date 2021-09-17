@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 dotenv.config();
 
-const PORT = '5000';
+const PORT = process.env.PORT||'5000';
 
 app.use(express.json());
 
