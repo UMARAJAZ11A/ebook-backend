@@ -6,7 +6,7 @@ const { Storage } = require('../node_modules/@google-cloud/storage');  //@google
 
 // API TO SEARCH BOOK WITH SEARCH PARAMETERS . 
 router.route('/book/').get((req, res) => {
-    console.log('hi');
+    
          const searchForColumn = req.query.searchForColumn ;
          const searchInColumn = req.query.searchInColumn ;
          const searchValue = req.query.searchValue ;
