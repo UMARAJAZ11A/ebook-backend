@@ -119,7 +119,7 @@ router.route('/book/').post((req, res) => {
 
 // API TO UPLOAD PDF AND IMAGE ON GOOGLE CLOUD
 
-router.route('/book/ffd/:id').post(async (req, res, next) => {
+router.route('/book/:id').post(async (req, res, next) => {
     
     let publicImgUrl;
     res.send('Hi');
