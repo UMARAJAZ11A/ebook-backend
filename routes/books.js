@@ -122,7 +122,7 @@ router.route('/book/').post((req, res) => {
 router.route('/book/:id').post(uploader.array('file'), async (req, res, next) => {
     
     let publicImgUrl;
-     console.log('pdf hhhiiitt')
+     res.send('pdf hhhiiitt')
 //     try {
 //         if (!req.files[0]) {
 //             res.status(400).send('No file uploaded.');
