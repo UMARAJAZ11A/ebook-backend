@@ -122,70 +122,70 @@ router.route('/book/').post((req, res) => {
 router.route('/book/:id').post(uploader.array('file'), async (req, res, next) => {
     
     let publicImgUrl;
-//     console.log('pdf hhhiiitt')
-    try {
-        if (!req.files[0]) {
-            res.status(400).send('No file uploaded.');
-            return;
-        }
+     console.log('pdf hhhiiitt')
+//     try {
+//         if (!req.files[0]) {
+//             res.status(400).send('No file uploaded.');
+//             return;
+//         }
 
 
-        // This is where we'll upload our PDF and IMG to Cloud Storage
-        const blobPdf = bucket.file(`bookPdf/${req.files[0].originalname}`);
-        const blobImg = bucket.file(`bookImg/${req.files[1].originalname}`)
+//         // This is where we'll upload our PDF and IMG to Cloud Storage
+//         const blobPdf = bucket.file(`bookPdf/${req.files[0].originalname}`);
+//         const blobImg = bucket.file(`bookImg/${req.files[1].originalname}`)
 
 
 
-        // Create writable stream and specifying file mimetype
-        const blobImgWriter = blobImg.createWriteStream({
-            metadata: {
-                contentType: req.files[1].mimetype,
-            },
-        });
+//         // Create writable stream and specifying file mimetype
+//         const blobImgWriter = blobImg.createWriteStream({
+//             metadata: {
+//                 contentType: req.files[1].mimetype,
+//             },
+//         });
         
-        const blobPdfWriter = blobPdf.createWriteStream({
-            metadata: {
-                contentType: req.files[0].mimetype,
-            },
-        });
+//         const blobPdfWriter = blobPdf.createWriteStream({
+//             metadata: {
+//                 contentType: req.files[0].mimetype,
+//             },
+//         });
 
 
-        // Sending the file and Assembling public URL for accessing the file via HTTP
-            blobImgWriter.on('error', (err) => next(err));
-            blobImgWriter.on('finish', () => {
-                publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
-            }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
-            }) 
-            console.log('img Written')
-            blobPdfWriter.on('error', (err) => next(err));
-            blobPdfWriter.on('finish', () => {
+//         // Sending the file and Assembling public URL for accessing the file via HTTP
+//             blobImgWriter.on('error', (err) => next(err));
+//             blobImgWriter.on('finish', () => {
+//                 publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
+//             }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
+//             }) 
+//             console.log('img Written')
+//             blobPdfWriter.on('error', (err) => next(err));
+//             blobPdfWriter.on('finish', () => {
                 
-                const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
-            }/o/bookPdf%2F${encodeURI(blobPdf.name.substr(8,blobPdf.name.length))}?alt=media`;
-            //gs://ebook-1f71a.appspot.com/bookImg
-            //gs://ebook-1f71a.appspot.com/bookPdf
+//                 const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
+//             }/o/bookPdf%2F${encodeURI(blobPdf.name.substr(8,blobPdf.name.length))}?alt=media`;
+//             //gs://ebook-1f71a.appspot.com/bookImg
+//             //gs://ebook-1f71a.appspot.com/bookPdf
             
             
             
-            // Return the file name and its public URL
-            res
-            .status(200)
-            .send({ fileName: req.files[0].originalname, pdffileLocation: publicPdfUrl,imgfileLocation: publicImgUrl });
+//             // Return the file name and its public URL
+//             res
+//             .status(200)
+//             .send({ fileName: req.files[0].originalname, pdffileLocation: publicPdfUrl,imgfileLocation: publicImgUrl });
             
-        });
+//         });
         
-        console.log('pdf Written')
+//         console.log('pdf Written')
 
-        // When there is no more data to be consumed from the stream
-        blobPdfWriter.end(req.files[0].buffer);
-        blobImgWriter.end(req.files[1].buffer)
+//         // When there is no more data to be consumed from the stream
+//         blobPdfWriter.end(req.files[0].buffer);
+//         blobImgWriter.end(req.files[1].buffer)
 
-    } catch (error) {
-        res.status(400).send(
-            `Error, could not upload file: ${error}`
-        );
-        return;
-    }
+//     } catch (error) {
+//         res.status(400).send(
+//             `Error, could not upload file: ${error}`
+//         );
+//         return;
+//     }
 });
 
 
