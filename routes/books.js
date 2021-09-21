@@ -134,7 +134,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
         const blobPdf = bucket.file(`bookPdf/${req.files[0].originalname}`);
         const blobImg = bucket.file(`bookImg/${req.files[1].originalname}`)
 
-
+        res.send('Hi');
 
         // Create writable stream and specifying file mimetype
         const blobImgWriter = blobImg.createWriteStream({
