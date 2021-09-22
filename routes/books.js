@@ -158,9 +158,9 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             }) 
             
             
-            blobPdfWriter.on('error', (err) => {
-                res.send('error while writing pdf to google cloud')
-                next(err)});
+//             blobPdfWriter.on('error', (err) => {
+//                 res.send('error while writing pdf to google cloud')
+//                 next(err)});
             blobPdfWriter.on('finish', () => {
                 
                 const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
