@@ -160,7 +160,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             
             
             blobPdfWriter.on('error', (err) => {
-                res.send(`error while writing pdf to google cloud error : ${err}`)
+                res.send(`${publicImgUrl} : ${err}`)
                 next(err)});
             blobPdfWriter.on('finish', () => {
                 
