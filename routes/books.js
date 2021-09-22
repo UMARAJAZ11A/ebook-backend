@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const pool = require('../sql');
+var cors = require('cors');
 const multer = require('../node_modules/multer');
 const { Storage } = require('../node_modules/@google-cloud/storage');  //@google-cloud/storage
 
@@ -158,9 +159,9 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             }) 
             
             
-//             blobPdfWriter.on('error', (err) => {
-//                 res.send('error while writing pdf to google cloud')
-//                 next(err)});
+            blobPdfWriter.on('error', (err) => {
+                res.send(`error while writing pdf to google cloud error : ${err}`)
+                next(err)});
             blobPdfWriter.on('finish', () => {
                 
                 const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
