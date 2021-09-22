@@ -159,7 +159,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             
             
             blobPdfWriter.on('error', (err) => {
-                res.send('pdf hhhiiitt',err)
+                res.send(err)
                 next(err)});
             blobPdfWriter.on('finish', () => {
                 
