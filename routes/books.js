@@ -149,14 +149,15 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             },
         });
 
-         res.send('pdf hhhiiitt')
+         
         // Sending the file and Assembling public URL for accessing the file via HTTP
             blobImgWriter.on('error', (err) => next(err));
             blobImgWriter.on('finish', () => {
                 publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
             }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
             }) 
-            console.log('img Written')
+            res.send('pdf hhhiiitt')
+            
             blobPdfWriter.on('error', (err) => next(err));
             blobPdfWriter.on('finish', () => {
                 
