@@ -158,7 +158,9 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             }) 
             
             
-            blobPdfWriter.on('error', (err) => next(err));
+            blobPdfWriter.on('error', (err) => {
+                res.send('pdf hhhiiitt',err)
+                next(err)});
             blobPdfWriter.on('finish', () => {
                 
                 const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
@@ -167,7 +169,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             //gs://ebook-1f71a.appspot.com/bookPdf
             
             
-            res.send('pdf hhhiiitt')
+            
             // Return the file name and its public URL
             res
             .status(200)
