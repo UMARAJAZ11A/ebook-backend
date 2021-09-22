@@ -1,1 +1,1 @@
-echo ${GOOGLE_CREDENTIALS} > /app/myprivateKey.json
+echo ${GCLOUD_APPLICATION_CREDENTIALS} > /app/myprivateKey.json
