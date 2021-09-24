@@ -158,34 +158,34 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             blobImgWriter.on('finish', () => {
                 publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
             }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
-                res.send(publicImgUrl);
+                
             }) 
             
             
-//             blobPdfWriter.on('error', (err) => {
-//                 res.send(`${publicImgUrl} eoor from pdf upload : ${err}`)
-//                 next(err)});
-//             blobPdfWriter.on('finish', () => {
+            blobPdfWriter.on('error', (err) => {
+                res.send(`${publicImgUrl} eoor from pdf upload : ${err}`)
+                next(err)});
+            blobPdfWriter.on('finish', () => {
                 
-//                 const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
-//             }/o/bookPdf%2F${encodeURI(blobPdf.name.substr(8,blobPdf.name.length))}?alt=media`;
-//             //gs://ebook-1f71a.appspot.com/bookImg
-//             //gs://ebook-1f71a.appspot.com/bookPdf
+                const publicPdfUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
+            }/o/bookPdf%2F${encodeURI(blobPdf.name.substr(8,blobPdf.name.length))}?alt=media`;
+            //gs://ebook-1f71a.appspot.com/bookImg
+            //gs://ebook-1f71a.appspot.com/bookPdf
             
             
             
-//             // Return the file name and its public URL
-//             res
-//             .status(200)
-//             .send({ fileName: req.files[0].originalname, pdffileLocation: publicPdfUrl,imgfileLocation: publicImgUrl });
+            // Return the file name and its public URL
+            res
+            .status(200)
+            .send({ fileName: req.files[0].originalname, pdffileLocation: publicPdfUrl,imgfileLocation: publicImgUrl });
             
-//         });
+        });
         
-//         console.log('pdf Written')
+        console.log('pdf Written')
 
-//         // When there is no more data to be consumed from the stream
-//         blobPdfWriter.end(req.files[0].buffer);
-//         blobImgWriter.end(req.files[1].buffer)
+        // When there is no more data to be consumed from the stream
+        blobPdfWriter.end(req.files[0].buffer);
+        blobImgWriter.end(req.files[1].buffer)
 
     } catch (error) {
         res.status(400).send(
