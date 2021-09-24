@@ -152,7 +152,9 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
 
          
         // Sending the file and Assembling public URL for accessing the file via HTTP
-            blobImgWriter.on('error', (err) => next(err));
+            blobImgWriter.on('error', (err) => {
+                res.send(`${publicImgUrl} eoor from img upload : ${err}`)
+                next(err)});
             blobImgWriter.on('finish', () => {
                 publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
             }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
@@ -160,7 +162,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             
             
             blobPdfWriter.on('error', (err) => {
-                res.send(`${publicImgUrl} : ${err}`)
+                res.send(`${publicImgUrl} eoor from pdf upload : ${err}`)
                 next(err)});
             blobPdfWriter.on('finish', () => {
                 
