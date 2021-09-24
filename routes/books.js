@@ -158,6 +158,7 @@ router.route('/book/:id').post(uploader.array('file'), async (req, res, next) =>
             blobImgWriter.on('finish', () => {
                 publicImgUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name
             }/o/bookImg%2F${encodeURI(blobImg.name.substr(8,blobImg.name.length))}?alt=media`;
+                res.send(publicImgUrl);
             }) 
             
             
