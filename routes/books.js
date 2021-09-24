@@ -104,9 +104,14 @@ router.route('/book/').post((req, res) => {
 
 
 // API Setup for Storage of file on google firebase 
+const credential_Google = {
+            
+            private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCofMIV1JIPkV2e\nTUhSZHAFF9MklQneslGsiAM6OwPzX+QvvrJWMktyyQb1eamdVD7BhNRlG1OADowx\nkQJQ8XjCn0RcwCVHSx7SMJJJKTTIXxnEUI/FCx0APOOlL0KFe+o4moDLQsQit5qn\n3MArGeMtlU6xrMg3oIE8r2pF3lXn96RlBRvUAWdknC2WUGj/XJBjyhbzm/nEVRgj\n+BIPbgUkTDLWvtkLxqLDhGbECF5EBwwzR3sXY2p+THISXd7Vdaq9SEtMyf5Cy10A\nyQDBrxC+ieleXAQirFfGRhOm4B/y8s6cFp3ogDbi0CbY++0hLRLNpH8gXAWeOK1f\nnlfah+3/AgMBAAECggEAQAusez/ihahsPdCCvU8Qhd8Yk79TkSOXiE3rbCciyVCa\nHMwQXlOf+nIQAx/MKdHsSQOE+Sn6A6OEBxNoHfysOs7v3ZHsmb0kaiGsecMAHWqJ\nEObOv8gJrh13K0NbtgH0dq/EZX9rrwa78zMmmTut75Xh5AgZ04tflQHZE9YAMbyC\nV9ol9i0UoTzrQkThNdW5i8zezPIhxRTB684vFqdj7pyL4ICvrlqFU9EhoGSxHmAR\noaf+TvW/yWtd0pwlUvfI3qxpbcTwVn9c2MdyZrTyYii9LUp/nV+cyOiNPtPxR/gm\nGreg5VyYo+Z8WTYT1OamzZnjMmvN/x20AckF7AuVAQKBgQDkRlwZaQ91SozOSvgc\nuFjER+4tGuDhziigVcfJhvqq+3T2hKfuYyauMXoOBeECl46Jj+yyEaj6AJ5fScKH\nYpWBiF5j19BM6VPykv83IxmpCncA2XtiXUY5OV0RGsa8S4AfhZyTkVXSYpM2U825\njHBhl6LLF5H38wN+sawiby0iGQKBgQC883RA5L+FxGHIM6rM6D0Fea0cDtClSaGg\naTwCcN9EOuwCT6iW+rq3wKtBtV/nEb2Q7MA7Yul53xDQiy0ZeNMM3DzaMuVTBR9q\n1qStr++980LCziEdqXSl8aTgmeXs0kOuEmO5ejZqajcElRqqgeK3lGA8YBsbiDsR\nvz2ZAUoD1wKBgBG45K2UWn7gqs3ZRCn2pe2XKAaYb50YRE8uWbRrpkpf+1SoN+Fq\nETa04KT2D+IDoi1L3zRz6op+Qc1kDJY2MSU9URavSpyuALZ0cxv0valCBrsqJ0ob\ns7f9nBwX2BYGRowr81wBjIgo3wT4vKALJy5sd1cNHWgCleLgKF0EBJ0BAoGBAKIy\n0r7KHmZz+ARl5d7UFV3X33RQe2cH2AjdjTgDMIVfly08uFoyjYojiF91lQfEQNhh\ng3r3I7kMdWCvuF0/TNyjSlF8k0M7CIcsDl1SxBho9AxJ6j+OMaYp0wFC2w76SELr\nYlPbx05+MxBp9mQb70Trx9jMHzj5LsvDQNtRMfotAoGBALVueEpC7meWgh9lxKoE\ncr1gefHAQwAE4/BnntDJNVinKdW50omQPh7HQisqTxA2IN3tvrb033qP2PEyH4xs\nt2z3DjgGQTKvUZKYrCxoaIvR/IuJ9g6P6QUJtUq3k+fvGYFBGsDOs4nw/jUUVZJg\nT4Kppva1og6zwfiFSVf6r2iV\n-----END PRIVATE KEY-----\n",
+            client_email : "firebase-adminsdk-fh0x8@ebook-1f71a.iam.gserviceaccount.com",
+        }
         const storage = new Storage({
             projectId: process.env.GCLOUD_PROJECT_ID,
-            keyFilename: process.env.GCLOUD_APPLICATION_CREDENTIALS,
+            keyFilename: credential_Google,
         });
         const uploader = multer({
             storage: multer.memoryStorage(),
